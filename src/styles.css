@@ -1,0 +1,134 @@
+body {
+  font-family: sans-serif;
+}
+
+#layout {
+  display: flex;
+  flex-direction: row-reverse;
+}
+
+#tree-grid {
+  width: 65vw;
+  height: 40vh;
+  position: relative;
+  display: flex;
+}
+
+#tree-grid::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: rgb(134, 219, 134);
+  clip-path: polygon(20% 0, 80% 0%, 100% 100%, 0% 100%);
+  z-index: -1;
+}
+
+#bar-interaction {
+  width: 35vw;
+}
+
+.btn {
+  position: fixed;
+  left: 400px;
+
+  background: rgb(75, 75, 75);
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 4px;
+  font-size: 16px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  box-shadow: 0 2px 4px rgba(0, 123, 255, 0.2);
+  text-decoration: none;
+  display: inline-block;
+  text-align: center;
+}
+
+.btn:hover {
+  background: rgb(94, 94, 94);
+  /* transform: translateY(-1px); */
+  box-shadow: 0 4px 8px rgba(0, 123, 255, 0.3);
+}
+
+.btn:active {
+  /* transform: translateY(0); */
+  box-shadow: 0 2px 4px rgba(0, 123, 255, 0.2);
+}
+
+.btn:focus {
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.3);
+}
+
+#overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  backdrop-filter: blur(10px);
+  background-color: rgba(255, 255, 255, 0.3); /* optional tint */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+#overlay img {
+  position: absolute;
+}
+
+#overlay img {
+  position: absolute;
+  top: 0;
+}
+
+#overlay img,
+p {
+  transition: opacity 2s ease-in-out;
+  display: block;
+}
+
+#overlay img.active {
+  opacity: 1;
+}
+
+#overlay .hide {
+  opacity: 0;
+}
+
+#overlay p {
+  position: absolute;
+  bottom: 3vh;
+}
+
+.radial_center_text {
+  max-width: 10ch;
+}
+
+#svg_container {
+  height: 40vh;
+  display: flex;
+  position: relative;
+  /* justify-content: center; */
+  /* background-color: rgb(134, 219, 134); */
+  /* clip-path: polygon(20% 0, 80% 0%, 100% 100%, 0% 100%); */
+}
+
+/* #svg_container::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: rgb(134, 219, 134);
+  clip-path: polygon(20% 0, 80% 0%, 100% 100%, 0% 100%);
+  z-index: -1;
+} */
+
+.tree_svg {
+  align-self: end;
+}
+.tree_svg path {
+  stroke: rgba(0, 0, 0, 0.5);
+}
