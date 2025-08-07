@@ -1,19 +1,19 @@
 import "./styles.css";
-import * as d3 from "d3";
-import { drawBarChart, isWorstCaseSel } from "./barchart.mjs";
-import { drawRadialChart } from "./radialchart.mjs";
-import caseData from "./caseData.json";
+// import * as d3 from "d3";
+// import { drawBarChart, isWorstCaseSel } from "./barchart.mjs";
+// import { drawRadialChart } from "./radialchart.mjs";
+// import caseData from "./caseData.json";
 
-const CONFIG = {
-  CASES: 5,
-  IMAGES: {
-    PRE_IMG: "src/preForest.svg",
-    POST_IMG: "src/postForest.svg",
-  },
-  TRANSITION_DELAY: 1300,
-  SUCCESS_MESSAGE:
-    "Great, you chose the most sustainable case. A tree has been added to your forest!",
-};
+// const CONFIG = {
+//   CASES: 5,
+//   IMAGES: {
+//     PRE_IMG: "src/preForest.svg",
+//     POST_IMG: "src/postForest.svg",
+//   },
+//   TRANSITION_DELAY: 1300,
+//   SUCCESS_MESSAGE:
+//     "Great, you chose the most sustainable case. A tree has been added to your forest!",
+// };
 
 // initialise case data
 // function newCaseData() {

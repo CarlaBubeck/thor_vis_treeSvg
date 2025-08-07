@@ -1,4 +1,5 @@
-import * as d3 from "d3";
+//import * as d3 from "d3";
+import * as d3 from "https://cdn.jsdelivr.net/npm/d3@7/+esm";
 
 import caseDataS1 from "./data/data_scenario_1.json";
 import caseDataS2 from "./data/data_scenario_2.json";
