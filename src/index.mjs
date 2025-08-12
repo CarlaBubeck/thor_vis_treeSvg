@@ -38,6 +38,8 @@ const TOTAL_CASES = 5;
 
 let finalizedSelections = [];
 
+initApp();
+
 function updateURL(selections) {
   const url = new URL(window.location);
   url.searchParams.set("selections", selections.join("-"));
@@ -151,7 +153,7 @@ function drawBarChartWithPreview(dataIn, step) {
     .attr("width", 200)
     .attr("height", 200);
 
-  d3.xml("src/tree.svg").then((dataXml) => {
+  d3.xml("./tree.svg").then((dataXml) => {
     const importedNode = document.importNode(dataXml.documentElement, true);
     previewSvg.node().appendChild(importedNode);
 
