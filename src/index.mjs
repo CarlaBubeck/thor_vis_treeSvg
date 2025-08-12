@@ -9,6 +9,14 @@ import * as d3 from "https://cdn.jsdelivr.net/npm/d3@7/+esm";
 
 const response = await fetch("./data/data_scenario_1.json");
 const caseDataS1 = await response.json();
+const response2 = await fetch("./data/data_scenario_2.json");
+const caseDataS2 = await response2.json();
+const response3 = await fetch("./data/data_scenario_3.json");
+const caseDataS3 = await response3.json();        
+const response4 = await fetch("./data/data_scenario_4.json");
+const caseDataS4 = await response4.json();
+const response5 = await fetch("./data/data_scenario_5.json");
+const caseDataS5 = await response5.json();
 
 const minValue = 0;
 const maxValue = 100;
