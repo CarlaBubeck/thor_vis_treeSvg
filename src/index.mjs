@@ -1,12 +1,6 @@
 //import * as d3 from "d3";
 import * as d3 from "https://cdn.jsdelivr.net/npm/d3@7/+esm";
 
-// import caseDataS1 from "./data/data_scenario_1.json";
-// import caseDataS2 from "./data/data_scenario_2.json";
-// import caseDataS3 from "./data/data_scenario_3.json";
-// import caseDataS4 from "./data/data_scenario_4.json";
-// import caseDataS5 from "./data/data_scenario_5.json";
-
 const response = await fetch("./data/data_scenario_1.json");
 const caseDataS1 = await response.json();
 const response2 = await fetch("./data/data_scenario_2.json");
@@ -25,6 +19,11 @@ const colorScale = d3.scaleSequential(
   [minValue, maxValue],
   d3.interpolateRdYlGn
 );
+
+const colorScaleTree = d3
+  .scaleSequential()
+  .domain([minValue, maxValue])
+  .interpolator(d3.interpolateRgb("#854a03", "#34c408")); // brown to green
 
 const ALL_DATASETS = [
   caseDataS1,
@@ -221,5 +220,5 @@ function updateSVG(data, selectedCase, step) {
     .ease(d3.easeQuadOut)
     .attr("width", svgSize)
     .attr("height", svgSize)
-    .attr("fill", colorScale(selectedData.value));
+    .attr("fill", colorScaleTree(selectedData.value));
 }

@@ -18,7 +18,7 @@ body {
   content: "";
   position: absolute;
   inset: 0;
-  background: rgb(134, 219, 134);
+  background: rgb(224, 224, 224);
   clip-path: polygon(20% 0, 80% 0%, 100% 100%, 0% 100%);
   z-index: -1;
 }
@@ -130,5 +130,5 @@ p {
   align-self: end;
 }
 .tree_svg path {
-  stroke: rgba(0, 0, 0, 0.5);
+  /* stroke: rgba(0, 0, 0, 0.5); */
 }
