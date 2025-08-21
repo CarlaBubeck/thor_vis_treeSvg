@@ -1,15 +1,26 @@
 body {
   font-family: sans-serif;
+  /* background-image: url('./screenshot.png'); */
+  background-size:cover;       /* Make the image cover the entire element */
+  background-position: center;  /* Center the image */
+  background-repeat: no-repeat; 
+  width: 100vw;
+  height: 100vh;
 }
 
 #layout {
   display: flex;
   flex-direction: row-reverse;
+  /* position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 50%;
+  height: 25%;   */
 }
 
 #tree-grid {
-  width: 65vw;
-  height: 40vh;
+  width: 65%;
+  height: 40%;
   position: relative;
   display: flex;
 }
@@ -109,7 +120,7 @@ p {
 }
 
 #svg_container {
-  height: 40vh;
+  height: 40%;
   display: flex;
   position: relative;
   /* justify-content: center; */

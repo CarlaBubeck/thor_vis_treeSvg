@@ -43,6 +43,12 @@ function updateURL(selections) {
   const url = new URL(window.location);
   url.searchParams.set("selections", selections.join("-"));
   history.replaceState(null, "", url);
+  sendChoiceToParent(selections);
+}
+
+function sendChoiceToParent(choice) {
+  console.log("message sent to parent with value: " + choice);
+  window.parent.postMessage({ choiceValue: choice }, "*");
 }
 
 function getSelectionsFromURL() {
