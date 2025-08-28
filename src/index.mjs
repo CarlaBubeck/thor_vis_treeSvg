@@ -175,17 +175,20 @@ function drawBarChartWithPreview(dataIn, step) {
     .text("Finalize selection")
     .style("margin-top", "10px")
     .on("click", () => {
-      finalizedSelections.push(selectedCase);
-      updateURL(finalizedSelections);
-      //drawFinalTreeOnly(data, selectedCase, step);
-      container.html(""); // clear bar interaction
+      sendChoiceToParent(selections);
 
-      if (finalizedSelections.length < TOTAL_CASES) {
-        drawBarChartWithPreview(
-          ALL_DATASETS[finalizedSelections.length],
-          finalizedSelections.length
-        );
-      }
+
+      // finalizedSelections.push(selectedCase);
+      // updateURL(finalizedSelections);
+      // //drawFinalTreeOnly(data, selectedCase, step);
+      // container.html(""); // clear bar interaction
+
+      // if (finalizedSelections.length < TOTAL_CASES) {
+      //   drawBarChartWithPreview(
+      //     ALL_DATASETS[finalizedSelections.length],
+      //     finalizedSelections.length
+      //   );
+      // }
     });
 }
 
