@@ -175,7 +175,7 @@ function drawBarChartWithPreview(dataIn, step) {
     .text("Finalize selection")
     .style("margin-top", "10px")
     .on("click", () => {
-      sendChoiceToParent(selections);
+      sendChoiceToParent(finalizedSelections);
 
 
       // finalizedSelections.push(selectedCase);
