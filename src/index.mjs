@@ -174,27 +174,27 @@ function drawBarChartWithPreview(dataIn, step) {
     updateSVG(data, selectedCase, step);
   });
 
-  container
-    .append("button")
-    .text("Finalize selection")
-    .style("margin-top", "10px")
-    .on("click", () => {
-      // finalizedSelections.push(selectedCase);
-      // sendChoiceToParent(finalizedSelections);
+  // container
+  //   .append("button")
+  //   .text("Finalize selection")
+  //   .style("margin-top", "10px")
+  //   .on("click", () => {
+  //     // finalizedSelections.push(selectedCase);
+  //     // sendChoiceToParent(finalizedSelections);
 
 
-      // finalizedSelections.push(selectedCase);
-      // updateURL(finalizedSelections);
-      // //drawFinalTreeOnly(data, selectedCase, step);
-      // container.html(""); // clear bar interaction
+  //     // finalizedSelections.push(selectedCase);
+  //     // updateURL(finalizedSelections);
+  //     // //drawFinalTreeOnly(data, selectedCase, step);
+  //     // container.html(""); // clear bar interaction
 
-      // if (finalizedSelections.length < TOTAL_CASES) {
-      //   drawBarChartWithPreview(
-      //     ALL_DATASETS[finalizedSelections.length],
-      //     finalizedSelections.length
-      //   );
-      // }
-    });
+  //     // if (finalizedSelections.length < TOTAL_CASES) {
+  //     //   drawBarChartWithPreview(
+  //     //     ALL_DATASETS[finalizedSelections.length],
+  //     //     finalizedSelections.length
+  //     //   );
+  //     // }
+  //   });
 }
 
 function drawFinalTreeOnly(data, selectedCase, step) {
