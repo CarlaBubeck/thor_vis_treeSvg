@@ -111,7 +111,8 @@ function drawBarChartWithPreview(dataIn, step) {
 
   const x = d3
     .scaleBand()
-    .domain(data.map((d) => `Case ${d.case}`))
+    // .domain(data.map((d) => `Case ${d.case}`))
+    .domain(data.map((d) => d.case))
     .range([-chartWidth / 2 + margin.left, chartWidth / 2 - margin.right])
     .padding(0.1);
 
@@ -122,10 +123,12 @@ function drawBarChartWithPreview(dataIn, step) {
 
   chartGroup.append("g").attr("class", "bars");
 
-  chartGroup
+  const xAxis = chartGroup
     .append("g")
     .attr("transform", `translate(0,${y(0)})`)
-    .call(d3.axisBottom(x));
+    .call(d3.axisBottom(x).tickFormat(""));
+
+    xAxis.selectAll(".tick line").remove();
 
   chartGroup
     .append("g")
@@ -136,13 +139,17 @@ function drawBarChartWithPreview(dataIn, step) {
 
   function renderBars() {
     chartGroup.selectAll(".tooltip").remove();
+    
 
-    chartGroup
+    // bars
+    let bars = chartGroup
       .select(".bars")
-      .selectAll("rect")
+      .selectAll("rect.top")
       .data(data)
       .join("rect")
-      .attr("x", (d) => x(`Case ${d.case}`))
+      .attr("class", "top")
+      // .attr("x", (d) => x(`Case ${d.case}`))
+      .attr("x", (d) => x(d.case))
       .attr("y", (d) => y(d.value))
       .attr("width", x.bandwidth())
       .attr("height", (d) => y(0) - y(d.value))
@@ -161,19 +168,34 @@ function drawBarChartWithPreview(dataIn, step) {
         sendChoiceToParent(selectedCase);
       });
 
-    chartGroup
-        .select(".bars")
-        .selectAll("text")
-        .data(data)
-        .join("text")
-        .text(d => d.value)
-        .attr("x", d => x(`Case ${d.case}`) + x.bandwidth() / 2)  // center text on bar
-        .attr("y", d => y(d.value) - 5) // slightly above the top of the bar
-        .attr("text-anchor", "middle")
-        .attr("fill", "#000")
-        .style("font-size", "12px")
-        .style("pointer-events", "none");  // so clicks pass through labels to bars
-      }
+      // text label
+      chartGroup
+          .select(".bars")
+          .selectAll("text")
+          .data(data)
+          .join("text")
+          .text(d => d.value)
+          .attr("x", d => x(d.case) + x.bandwidth() / 2)  // center text on bar
+          .attr("y", d => y(d.value) - 5) // slightly above the top of the bar
+          .attr("text-anchor", "middle")
+          .attr("fill", "#000")
+          .style("font-size", "12px")
+          .style("pointer-events", "none");  // so clicks pass through labels to bars
+        };
+
+
+      // traffic light indicatos underneath bars
+      let bottombars = chartGroup
+      .select(".bars")
+      .selectAll("rect.bottom")
+      .data(data)
+      .attr("class", "bottom")
+      .join("rect")
+      .attr("x", (d) => x(d.case))
+      .attr("y", y(0) + 5)
+      .attr("width", x.bandwidth())
+      .attr("height", 10)
+      .attr("fill", (d) => colorScale(d.value));
 
   const treeGrid = d3.select("#tree-grid");
 
