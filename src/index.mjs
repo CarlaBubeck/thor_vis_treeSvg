@@ -160,7 +160,20 @@ function drawBarChartWithPreview(dataIn, step) {
         // finalizedSelections.push(selectedCase);
         sendChoiceToParent(selectedCase);
       });
-  }
+
+    chartGroup
+        .select(".bars")
+        .selectAll("text")
+        .data(data)
+        .join("text")
+        .text(d => d.value)
+        .attr("x", d => x(`Case ${d.case}`) + x.bandwidth() / 2)  // center text on bar
+        .attr("y", d => y(d.value) - 5) // slightly above the top of the bar
+        .attr("text-anchor", "middle")
+        .attr("fill", "#000")
+        .style("font-size", "12px")
+        .style("pointer-events", "none");  // so clicks pass through labels to bars
+      }
 
   const treeGrid = d3.select("#tree-grid");
 
