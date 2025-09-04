@@ -206,7 +206,7 @@ function drawBarChartWithPreview(dataIn, step) {
     .attr("width", 200)
     .attr("height", 200);
 
-  d3.xml("./tree.svg").then((dataXml) => {
+  d3.xml("./newtree.svg").then((dataXml) => {
     const importedNode = document.importNode(dataXml.documentElement, true);
     previewSvg.node().appendChild(importedNode);
 
@@ -249,7 +249,7 @@ function drawFinalTreeOnly(data, selectedCase, step) {
     .attr("id", `final_tree_${step}`)
     .attr("class", "tree_svg");
 
-  d3.xml("./tree.svg").then((dataXml) => {
+  d3.xml("./newtree.svg").then((dataXml) => {
     const importedNode = document.importNode(dataXml.documentElement, true);
     svg.node().appendChild(importedNode);
 
@@ -279,4 +279,23 @@ function updateSVG(data, selectedCase, step) {
     .attr("width", svgSize)
     .attr("height", svgSize)
     .attr("fill", colorScaleTree(selectedData.value));
+
+d3.select(`#tree_svg_${step}, #final_tree_${step}`)
+  .select("path:nth-of-type(4)")  // Select the third path inside the SVG(s)
+  .transition()
+  .duration(300)
+  .ease(d3.easeQuadOut)
+  .attr("fill", colorScaleTree(selectedData.value));
+
+// shadow
+  d3.select(`#tree_svg_${step}, #final_tree_${step}`)
+  .select("path:nth-of-type(5)")  // Select the third path inside the SVG(s)
+  .transition()
+  .duration(300)
+  .ease(d3.easeQuadOut)
+  .attr("fill", colorScaleTree(Math.max(0, selectedData.value - 5)));
+
+
+
+
 }
