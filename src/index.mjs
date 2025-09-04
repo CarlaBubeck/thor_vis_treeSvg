@@ -146,6 +146,10 @@ function drawBarChartWithPreview(dataIn, step) {
         renderBars();
         // updateSVG(data, selectedCase, step, colorScale, minValue, maxValue);
         updateSVG(data, selectedCase, step);
+
+        // send choice to pt survey
+        finalizedSelections.push(selectedCase);
+        sendChoiceToParent(finalizedSelections);
       });
   }
 
@@ -175,8 +179,8 @@ function drawBarChartWithPreview(dataIn, step) {
     .text("Finalize selection")
     .style("margin-top", "10px")
     .on("click", () => {
-      finalizedSelections.push(selectedCase);
-      sendChoiceToParent(finalizedSelections);
+      // finalizedSelections.push(selectedCase);
+      // sendChoiceToParent(finalizedSelections);
 
 
       // finalizedSelections.push(selectedCase);
