@@ -20,6 +20,14 @@ const colorScale = d3.scaleSequential(
   d3.interpolateRdYlGn
 );
 
+const bar_colors = [
+  "#F9B2FF",
+  "#D7BAFF",
+    "#A8BCFF",
+      "#99D8FF",
+        "#A8FCFF"
+];
+
 const colorScaleTree = d3
   .scaleSequential()
   .domain([minValue, maxValue])
@@ -32,7 +40,7 @@ const ALL_DATASETS = [
   caseDataS4,
   caseDataS5,
 ];
-const CONFIG = { SORT: true };
+const CONFIG = { SORT: false };
 const TOTAL_CASES = 5;
 
 let finalizedSelections = [];
@@ -138,7 +146,8 @@ function drawBarChartWithPreview(dataIn, step) {
       .attr("y", (d) => y(d.value))
       .attr("width", x.bandwidth())
       .attr("height", (d) => y(0) - y(d.value))
-      .attr("fill", (d) => colorScale(d.value))
+      // .attr("fill", (d) => colorScale(d.value))
+      .attr("fill", (d) => bar_colors[parseInt(d.case) - 1])
       .style("stroke", (d) => (d.case === selectedCase ? "#000" : "none"))
       .style("stroke-width", "2px")
       .on("click", (event, d) => {
