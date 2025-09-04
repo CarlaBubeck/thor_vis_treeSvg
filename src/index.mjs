@@ -148,8 +148,8 @@ function drawBarChartWithPreview(dataIn, step) {
         updateSVG(data, selectedCase, step);
 
         // send choice to pt survey
-        finalizedSelections.push(selectedCase);
-        sendChoiceToParent(finalizedSelections);
+        // finalizedSelections.push(selectedCase);
+        sendChoiceToParent(selectedCase);
       });
   }
 
