@@ -44,7 +44,7 @@ const colorScaleTree = d3
   const colorScaleTreeS2 = d3
   .scaleSequential()
   .domain([minValue, maxValue])
-  .interpolator(d3.interpolateRgb("#623703ff", "#1b7200ff"));
+  .interpolator(d3.interpolateRgb("#623703ff", "#ff00bfff"));
 
 
 const ALL_DATASETS = [
