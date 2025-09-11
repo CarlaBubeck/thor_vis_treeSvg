@@ -56,7 +56,7 @@ const ALL_DATASETS = [
 ];
 const CONFIG = { 
   SORT: false,
-  TREE_SIZING_FACTOR: 300 };
+  TREE_SIZING_FACTOR: 150 };
 const TOTAL_CASES = 5;
 
 let finalizedSelections = [];
@@ -326,7 +326,7 @@ function updateSVG(data, selectedCase, step) {
   const sizeScale = d3
     .scaleLinear()
     .domain([minValue, maxValue])
-    .range([60, 200]);
+    .range([50, 200]);
 
   const svgSize = sizeScale(selectedData.value);
 
