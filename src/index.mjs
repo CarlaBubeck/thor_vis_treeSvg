@@ -54,7 +54,9 @@ const ALL_DATASETS = [
   caseDataS4,
   caseDataS5,
 ];
-const CONFIG = { SORT: false };
+const CONFIG = { 
+  SORT: false,
+  TREE_SIZING_FACTOR: 300 };
 const TOTAL_CASES = 5;
 
 let finalizedSelections = [];
@@ -111,11 +113,21 @@ function drawBarChartWithPreview(dataIn, step) {
 
   let selectedCase = data.reduce((a, b) => (a.value > b.value ? a : b)).case;
 
+  // const svg = container
+  //   .append("svg")
+  //   .attr("width", width)
+  //   .attr("height", height);
+
+
   const svg = container
     .append("svg")
-    .attr("width", width)
-    .attr("height", height);
+    .attr("viewBox", `0 0 ${width} ${height}`)
+  .attr("preserveAspectRatio", "xMidYMid meet")
+  .style("width", "100%")       // scale width to container width
+  .style("height", "auto");
 
+
+  
   const chartGroup = svg
     .append("g")
     .attr("transform", `translate(${width / 2}, ${height / 2})`);
@@ -195,7 +207,21 @@ function drawBarChartWithPreview(dataIn, step) {
           .attr("fill", "#000")
           .style("font-size", "12px")
           .style("pointer-events", "none");  // so clicks pass through labels to bars
+
+      chartGroup.append("text")
+        .attr("class", "y-axis-label")
+        .attr("text-anchor", "middle")
+        .attr("transform", `rotate(-90)`)  // rotate text to vertical
+        .attr("x", 10)          // center along y-axis height
+        .attr("y", -170)                    // left of y-axis (adjust as needed)
+        .text("Pax / 100kg CO2")         // replace with your label text
+        .style("font-size", "14px")
+        .style("fill", "#000");
+
+
         };
+
+        
 
 
       // traffic light indicatos underneath bars
@@ -213,15 +239,31 @@ function drawBarChartWithPreview(dataIn, step) {
 
   const treeGrid = d3.select("#tree-grid");
 
-  const previewSvg = treeGrid
-    .append("svg")
-    .attr("id", `tree_svg_${step}`)
-    .attr("class", "tree_svg")
-    .attr("width", 200)
-    .attr("height", 200);
+  // const previewSvg = treeGrid
+  //   .append("svg")
+  //   .attr("id", `tree_svg_${step}`)
+  //   .attr("class", "tree_svg")
+  //   .attr("width", 200)
+  //   .attr("height", 200);
+
+
+
+    const previewSvg = treeGrid
+  .append("svg")
+  .attr("id", `tree_svg_${step}`)
+  .attr("class", "tree_svg");
+  // remove fixed width/height attributes
+  // .attr("width", 200)
+  // .attr("height", 200)
+  // .attr("viewBox", `0 0 200 200`)  // use a fixed design box size
+  // .style("width", "100%")          // take full width of container
+  // .style("height", "auto");   
+
 
   d3.xml("./newtreev2.svg").then((dataXml) => {
     const importedNode = document.importNode(dataXml.documentElement, true);
+    importedNode.removeAttribute("width");
+    importedNode.removeAttribute("height");
     previewSvg.node().appendChild(importedNode);
 
     previewSvg.selectAll("*").each(function () {
@@ -265,6 +307,8 @@ function drawFinalTreeOnly(data, selectedCase, step) {
 
   d3.xml("./newtreev2.svg").then((dataXml) => {
     const importedNode = document.importNode(dataXml.documentElement, true);
+        importedNode.removeAttribute("width");
+    importedNode.removeAttribute("height");
     svg.node().appendChild(importedNode);
 
     svg.selectAll("*").each(function () {
@@ -282,19 +326,24 @@ function updateSVG(data, selectedCase, step) {
   const sizeScale = d3
     .scaleLinear()
     .domain([minValue, maxValue])
-    .range([100, 300]);
+    .range([60, 200]);
 
   const svgSize = sizeScale(selectedData.value);
 
+  const scaleFactor = svgSize / CONFIG.TREE_SIZING_FACTOR;
 
-  // size
-  d3.select(`#tree_svg_${step}, #final_tree_${step}`)
-    .transition()
-    .duration(300)
-    .ease(d3.easeQuadOut)
-    .attr("width", svgSize)
-    .attr("height", svgSize);
-    // .attr("fill", colorScaleTree(selectedData.value));
+ d3.select(`#tree_svg_${step}, #final_tree_${step}`)
+ .attr("transform", `scale(${scaleFactor})`);
+
+
+  // // size
+  // d3.select(`#tree_svg_${step}, #final_tree_${step}`)
+  //   .transition()
+  //   .duration(300)
+  //   .ease(d3.easeQuadOut)
+  //   .attr("width", svgSize)
+  //   .attr("height", svgSize);
+  //   // .attr("fill", colorScaleTree(selectedData.value));
 
 // d3.select(`#tree_svg_${step}, #final_tree_${step}`)
 //   .select("path:nth-of-type(4)")  // Select the third path inside the SVG(s)
