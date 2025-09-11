@@ -63,21 +63,32 @@ body {
   /* Make sure SVGs have no margin or padding */
   margin: 0;
   padding: 0;
+  max-width: 100px;
+  
+margin-bottom: -7%;
 }
 
 
 #tree-grid {
-  flex: 1;
+  flex: 60;
   height: 30vh;
   position: relative;
-  display: flex;
   max-width: 50vw;
-    align-items: flex-end;
-    justify-content: flex-start;
+
+
+  display: flex;
+  align-items: flex-end;
+  justify-content: flex-start;
+
+/* 
+      display: grid;
+  grid-auto-flow: column;      
+  grid-auto-columns: max-content; 
+  align-items: end; */
 }
 
 #bar-interaction {
-  flex: 1;
+  flex: 40;
   height: 50vh;
   width: 50vw;
   display: flex;
