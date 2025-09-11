@@ -33,6 +33,20 @@ const colorScaleTree = d3
   .domain([minValue, maxValue])
   .interpolator(d3.interpolateRgb("#854a03", "#34c408")); // brown to green
 
+
+  const colorScaleTreeS1 = d3
+  .scaleSequential()
+  .domain([minValue, maxValue])
+  .interpolator(d3.interpolateRgb("#6b3c04ff", "#2a9c07ff"));
+
+
+
+  const colorScaleTreeS2 = d3
+  .scaleSequential()
+  .domain([minValue, maxValue])
+  .interpolator(d3.interpolateRgb("#623703ff", "#1b7200ff"));
+
+
 const ALL_DATASETS = [
   caseDataS1,
   caseDataS2,
@@ -206,7 +220,7 @@ function drawBarChartWithPreview(dataIn, step) {
     .attr("width", 200)
     .attr("height", 200);
 
-  d3.xml("./newtree.svg").then((dataXml) => {
+  d3.xml("./newtreev2.svg").then((dataXml) => {
     const importedNode = document.importNode(dataXml.documentElement, true);
     previewSvg.node().appendChild(importedNode);
 
@@ -249,7 +263,7 @@ function drawFinalTreeOnly(data, selectedCase, step) {
     .attr("id", `final_tree_${step}`)
     .attr("class", "tree_svg");
 
-  d3.xml("./newtree.svg").then((dataXml) => {
+  d3.xml("./newtreev2.svg").then((dataXml) => {
     const importedNode = document.importNode(dataXml.documentElement, true);
     svg.node().appendChild(importedNode);
 
@@ -272,30 +286,58 @@ function updateSVG(data, selectedCase, step) {
 
   const svgSize = sizeScale(selectedData.value);
 
+
+  // size
   d3.select(`#tree_svg_${step}, #final_tree_${step}`)
     .transition()
     .duration(300)
     .ease(d3.easeQuadOut)
     .attr("width", svgSize)
-    .attr("height", svgSize)
-    .attr("fill", colorScaleTree(selectedData.value));
+    .attr("height", svgSize);
+    // .attr("fill", colorScaleTree(selectedData.value));
 
-d3.select(`#tree_svg_${step}, #final_tree_${step}`)
-  .select("path:nth-of-type(4)")  // Select the third path inside the SVG(s)
-  .transition()
-  .duration(300)
-  .ease(d3.easeQuadOut)
-  .attr("fill", colorScaleTree(selectedData.value));
+// d3.select(`#tree_svg_${step}, #final_tree_${step}`)
+//   .select("path:nth-of-type(4)")  // Select the third path inside the SVG(s)
+//   .transition()
+//   .duration(300)
+//   .ease(d3.easeQuadOut)
+//   .attr("fill", colorScaleTree(selectedData.value));
 
-// shadow
+// // shadow
+//   d3.select(`#tree_svg_${step}, #final_tree_${step}`)
+//   .select("path:nth-of-type(5)")  // Select the third path inside the SVG(s)
+//   .transition()
+//   .duration(300)
+//   .ease(d3.easeQuadOut)
+//   .attr("fill", colorScaleTree(Math.max(0, selectedData.value - 5)));
+
+
+  let baseColor = colorScaleTree(selectedData.value);
+  let shadeColor1 = colorScaleTreeS1(Math.max(0, selectedData.value));
+  let shadeColor2 = colorScaleTreeS2(Math.max(0, selectedData.value));
+
+  changePathColor(step, 8, baseColor);
+  changePathColor(step, 9, baseColor);
+  changePathColor(step, 10, baseColor);
+
+  changePathColor(step, 4, shadeColor2);
+  changePathColor(step, 5, shadeColor2);
+  changePathColor(step, 6, shadeColor2);
+  changePathColor(step, 7, shadeColor2);
+
+  changePathColor(step, 3, shadeColor1);
+
+}
+
+
+function changePathColor(step, pathID, color) {
+
+  console.log(pathID, color)
+
   d3.select(`#tree_svg_${step}, #final_tree_${step}`)
-  .select("path:nth-of-type(5)")  // Select the third path inside the SVG(s)
+  .select(`path:nth-of-type(${pathID})`)  // Select the third path inside the SVG(s)
   .transition()
   .duration(300)
   .ease(d3.easeQuadOut)
-  .attr("fill", colorScaleTree(Math.max(0, selectedData.value - 5)));
-
-
-
-
+  .attr("fill", color);
 }
