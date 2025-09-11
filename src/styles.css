@@ -52,6 +52,7 @@ body {
   left: 0;
   width: 50vw;   /* 50% viewport width */
   height: 50vh;  /* 25% viewport height */
+  margin-left: 5vw;
 
 }
 
