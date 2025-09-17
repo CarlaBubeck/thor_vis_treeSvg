@@ -63,7 +63,7 @@ body {
   /* Make sure SVGs have no margin or padding */
   margin: 0;
   padding: 0;
-  /* max-width: 100px; */
+  max-width: 100px;
 margin-bottom: 5%;
   transform: translateY(100%); /*  Hinzugefügt:  Verschiebt den Baum so, dass der untere Punkt am Rand ausgerichtet ist */
 }
