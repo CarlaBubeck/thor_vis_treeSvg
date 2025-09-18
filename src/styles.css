@@ -59,7 +59,7 @@ body {
 .tree_svg {
   /* Remove align-self if you want all SVGs aligned the same */
   /* align-self: end;  <-- this can stay or be removed, flex items already bottom-aligned by container */
-  /* display: inline-block; /* prevent inline SVG margin */
+  /* display: inline-block; prevent inline SVG margin
   vertical-align: bottom; */
   /* Make sure SVGs have no margin or padding */
   margin: 0;
