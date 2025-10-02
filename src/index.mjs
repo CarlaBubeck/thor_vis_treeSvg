@@ -56,7 +56,7 @@ const ALL_DATASETS = [
 ];
 const CONFIG = { 
   SORT: false,
-  TREE_SIZING_FACTOR: 180 };
+  TREE_SIZING_FACTOR: 130 };
 const TOTAL_CASES = 5;
 
 let finalizedSelections = [];
@@ -92,6 +92,8 @@ export async function initApp() {
 
   console.log(finalizedSelections);
 
+
+
   for (let i = 0; i < finalizedSelections.length; i++) {
     drawFinalTreeOnly(ALL_DATASETS[i], finalizedSelections[i], i);
   }
@@ -100,6 +102,22 @@ export async function initApp() {
     const step = finalizedSelections.length;
     drawBarChartWithPreview(ALL_DATASETS[step], step);
   }
+
+
+
+
+//   setTimeout(() => {
+//   console.log(document.getElementsByClassName("tree_svg")[0].querySelector("svg"));
+
+    
+//     const svg = document.getElementsByClassName("tree_svg")[0].querySelector("svg");
+
+
+//     const bbox = svg.getBBox(); // includes all visible elements
+
+//     svg.setAttribute("viewBox", `${bbox.x} ${bbox.y} ${bbox.width} ${bbox.height}`);
+// }, 1000);
+
 }
 
 function drawBarChartWithPreview(dataIn, step) {
@@ -331,6 +349,9 @@ function updateSVG(data, selectedCase, step) {
   const svgSize = sizeScale(selectedData.value);
 
   const scaleFactor = svgSize / CONFIG.TREE_SIZING_FACTOR;
+
+
+
 
  d3.select(`#tree_svg_${step}, #final_tree_${step}`)
     .transition()

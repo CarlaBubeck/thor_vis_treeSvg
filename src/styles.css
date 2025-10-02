@@ -68,9 +68,14 @@ body {
 
   margin: 0;
   padding: 0;
+  /* height: 20vh; */
+  height: 10vw;
+
+  width: 50%; 
+  /* height: auto; */
   /* max-width: 100px; */
-    width: 10%;
-    height: auto;
+    /* width: 10%;
+    height: auto; */
   /* margin-bottom: 50%; */
   /* transform: translateY(100%);  Hinzugefügt:  Verschiebt den Baum so, dass der untere Punkt am Rand ausgerichtet ist */
 
