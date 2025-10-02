@@ -81,6 +81,14 @@ function getSelectionsFromURL() {
   return raw ? raw.split("-").map(Number) : [];
 }
 
+
+function getDatasetsFromURL() {
+  // in URL: &dataset=1
+  const params = new URLSearchParams(window.location.search);
+  const raw = params.get("dataset");
+  return raw;
+}
+
 export async function initApp() {
   // Layout setup
   const layout = d3.select("body").append("div").attr("id", "layout");
@@ -90,7 +98,10 @@ export async function initApp() {
 
   finalizedSelections = getSelectionsFromURL();
 
-  console.log(finalizedSelections);
+  let selectedDataset = getDatasetsFromURL();
+
+
+  console.log("dataset: " + selectedDataset);
 
 
 
@@ -412,7 +423,7 @@ function updateSVG(data, selectedCase, step) {
 
 function changePathColor(step, pathID, color) {
 
-  console.log(pathID, color)
+  // console.log(pathID, color)
 
   d3.select(`#tree_svg_${step}, #final_tree_${step}`)
   .select(`path:nth-of-type(${pathID})`)  // Select the third path inside the SVG(s)
