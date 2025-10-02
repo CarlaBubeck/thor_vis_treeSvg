@@ -339,6 +339,13 @@ function updateSVG(data, selectedCase, step) {
  .attr("transform", `scale(${scaleFactor})`);
 
 
+//  d3.select(`#tree_svg_${step}, #final_tree_${step}`)
+//  .attr("viewBox", `0 0 ${scaleFactor} ${scaleFactor}`)
+//    .attr("preserveAspectRatio", "xMidYMid meet")
+//    .style("width", "100%")
+//    .style("height", "auto");
+
+
   // // size
   // d3.select(`#tree_svg_${step}, #final_tree_${step}`)
   //   .transition()
