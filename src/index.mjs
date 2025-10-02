@@ -56,7 +56,7 @@ const ALL_DATASETS = [
 ];
 const CONFIG = { 
   SORT: false,
-  TREE_SIZING_FACTOR: 150 };
+  TREE_SIZING_FACTOR: 180 };
 const TOTAL_CASES = 5;
 
 let finalizedSelections = [];
@@ -333,6 +333,9 @@ function updateSVG(data, selectedCase, step) {
   const scaleFactor = svgSize / CONFIG.TREE_SIZING_FACTOR;
 
  d3.select(`#tree_svg_${step}, #final_tree_${step}`)
+    .transition()
+    .duration(150)
+    .ease(d3.easeQuadOut)
  .attr("transform", `scale(${scaleFactor})`);
 
 
