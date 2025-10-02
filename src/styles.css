@@ -81,7 +81,7 @@ body {
 
 
 
-    position: absolute;
+    /* position: absolute; */
   bottom: 0;
   /* left: 50%; */
   transform-origin: bottom center;
@@ -89,6 +89,13 @@ body {
   transition: transform 1s ease; 
   /* transform-box: fill-box;
   transform: translateX(-50%) scale(1); */
+  
+}
+
+.tree_svg > svg {
+  position: absolute;
+  bottom: 0;
+  margin-bottom: 100px;
 }
 
 
