@@ -1,3 +1,8 @@
+html {
+  margin: 20px;
+}
+
+
 body {
   font-family: sans-serif;
   background-image: url('./bg02.png');
@@ -14,7 +19,7 @@ body {
   display: flex;
   align-items: flex-end;
   justify-content: start;
-  
+
 }
 
 
