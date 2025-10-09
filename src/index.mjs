@@ -373,7 +373,7 @@ function updateSVG(data, selectedCase, step) {
 
  d3.select(`#tree_svg_${step}, #final_tree_${step}`)
     .transition()
-    .duration(150)
+    .duration(100)
     .ease(d3.easeQuadOut)
  .attr("transform", `scale(${scaleFactor})`);
 
