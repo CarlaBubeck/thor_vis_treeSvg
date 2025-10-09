@@ -16,15 +16,6 @@ body {
 }
 
 
-.bottom-left-quarter {
-  position: fixed;        /* fixed to viewport */
-  bottom: 0;
-  left: 0;
-  width: 50vw;           /* half the viewport width */
-  height: 50vh;          /* half the viewport height */
-  /* background-color: rgba(255, 35, 35, 0.5); just for visibility */
-}
-
 /* #layout {
   display: flex;
   flex-direction: row-reverse;
@@ -72,7 +63,7 @@ body {
   height: 50%;
   margin-left: 5vw;
 
-    background-color: rgba(255, 35, 35, 0.5); /* just for visibility */
+    /* background-color: rgba(255, 35, 35, 0.5); just for visibility */
 
 }
 
