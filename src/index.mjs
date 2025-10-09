@@ -5,12 +5,12 @@ const response = await fetch("./data/data_scenario_1.json");
 const caseDataS1 = await response.json();
 const response2 = await fetch("./data/data_scenario_2.json");
 const caseDataS2 = await response2.json();
-const response3 = await fetch("./data/data_scenario_3.json");
-const caseDataS3 = await response3.json();
-const response4 = await fetch("./data/data_scenario_4.json");
-const caseDataS4 = await response4.json();
-const response5 = await fetch("./data/data_scenario_5.json");
-const caseDataS5 = await response5.json();
+// const response3 = await fetch("./data/data_scenario_3.json");
+// const caseDataS3 = await response3.json();
+// const response4 = await fetch("./data/data_scenario_4.json");
+// const caseDataS4 = await response4.json();
+// const response5 = await fetch("./data/data_scenario_5.json");
+// const caseDataS5 = await response5.json();
 
 const minValue = 0;
 const maxValue = 100;
@@ -50,9 +50,9 @@ const colorScaleTree = d3
 const ALL_DATASETS = [
   caseDataS1,
   caseDataS2,
-  caseDataS3,
-  caseDataS4,
-  caseDataS5,
+  // caseDataS3,
+  // caseDataS4,
+  // caseDataS5,
 ];
 const CONFIG = { 
   SORT: false,
@@ -98,8 +98,13 @@ export async function initApp() {
 
   finalizedSelections = getSelectionsFromURL();
 
-  let selectedDataset = getDatasetsFromURL();
+  let selectedDataset = parseInt(getDatasetsFromURL());
 
+
+
+  if(selectedDataset !== 1 && selectedDataset !== 2) {
+    console.log("wrong dataset; dataset: " + selectedDataset);
+  }
 
   console.log("dataset: " + selectedDataset);
 
@@ -109,11 +114,13 @@ export async function initApp() {
     drawFinalTreeOnly(ALL_DATASETS[i], finalizedSelections[i], i);
   }
 
-  if (finalizedSelections.length < TOTAL_CASES) {
-    const step = finalizedSelections.length;
-    drawBarChartWithPreview(ALL_DATASETS[step], step);
-  }
+  // if (finalizedSelections.length < TOTAL_CASES) {
+  //   const step = finalizedSelections.length;
+  //   drawBarChartWithPreview(ALL_DATASETS[step], step);
+  // }
 
+
+    drawBarChartWithPreview(ALL_DATASETS[selectedDataset - 1], selectedDataset);
 
 
 
