@@ -110,31 +110,28 @@ export async function initApp() {
 
 
 
-  for (let i = 0; i < finalizedSelections.length; i++) {
-    drawFinalTreeOnly(ALL_DATASETS[i], finalizedSelections[i], i);
-  }
+  // for (let i = 0; i < finalizedSelections.length; i++) {
+  //   drawFinalTreeOnly(ALL_DATASETS[i], finalizedSelections[i], i);
+  // }
 
   // if (finalizedSelections.length < TOTAL_CASES) {
   //   const step = finalizedSelections.length;
   //   drawBarChartWithPreview(ALL_DATASETS[step], step);
   // }
 
+  console.log(typeof finalizedSelections !== 'undefined' && finalizedSelections.length > 0);
 
-    drawBarChartWithPreview(ALL_DATASETS[selectedDataset - 1], selectedDataset);
+ if (typeof finalizedSelections !== 'undefined' && finalizedSelections.length > 0) {
+  // draw old tree
+
+  let pastDataset = selectedDataset == 1 ? 2 : 1;
+  drawFinalTreeOnly(ALL_DATASETS[pastDataset - 1], finalizedSelections[0], 0);
+
+ }
 
 
+  drawBarChartWithPreview(ALL_DATASETS[selectedDataset - 1], selectedDataset);
 
-//   setTimeout(() => {
-//   console.log(document.getElementsByClassName("tree_svg")[0].querySelector("svg"));
-
-    
-//     const svg = document.getElementsByClassName("tree_svg")[0].querySelector("svg");
-
-
-//     const bbox = svg.getBBox(); // includes all visible elements
-
-//     svg.setAttribute("viewBox", `${bbox.x} ${bbox.y} ${bbox.width} ${bbox.height}`);
-// }, 1000);
 
 }
 

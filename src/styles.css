@@ -23,91 +23,27 @@ body {
 }
 
 
-/* #layout {
-  display: flex;
-  flex-direction: row-reverse;
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  width: 50%;
-  height: 25%;  
-}
-
-#tree-grid {
-  width: 65%;
-  height: 40%;
-    height: 100%;
-  position: relative;
-  display: flex;
-}
-
-#tree-grid::before {
-  content: "";
-  position: absolute;
-  bottom: 0;
-  inset: 0;
-  background: rgb(224, 224, 224);
-  clip-path: polygon(20% 0, 80% 0%, 100% 100%, 0% 100%);
-  z-index: -1;
-}
-
-#bar-interaction {
-  width: 35vw;
-  height: 100%;
-} */
-
-
 #layout {
   display: flex;
   flex-direction: row-reverse;
   align-items: end;
-  /* position: absolute; */
   position: fixed;
-  /* top: 300px; */
   left: 0;
   width: 50vw;  
-  /* height: 100%;  */
   height: 50%;
-  margin-left: 5vw;
-
-    /* background-color: rgba(255, 35, 35, 0.5); just for visibility */
+  margin-left: 2vw;
 
 }
 
 .tree_svg {
-  /* Remove align-self if you want all SVGs aligned the same */
-  /* align-self: end;  <-- this can stay or be removed, flex items already bottom-aligned by container */
-  /* display: inline-block; prevent inline SVG margin
-  vertical-align: bottom; */
-  /* Make sure SVGs have no margin or padding */
-
-
   margin: 0;
   padding: 0;
-  /* height: 20vh; */
   height: 8vw;
   max-height: 20vh;
-
   width: 50%; 
-  /* height: 50%; */
-  /* height: auto; */
-  /* max-width: 100px; */
-    /* width: 10%;
-    height: auto; */
-  /* margin-bottom: 50%; */
-  /* transform: translateY(100%);  Hinzugefügt:  Verschiebt den Baum so, dass der untere Punkt am Rand ausgerichtet ist */
-
-
-
-    /* position: absolute; */
   bottom: 0;
-  /* left: 50%; */
   transform-origin: bottom center;
-
   transition: transform 1s ease; 
-  /* transform-box: fill-box;
-  transform: translateX(-50%) scale(1); */
-  
 }
 
 .tree_svg > svg {
@@ -122,19 +58,13 @@ body {
   height: 30%;
   position: relative;
   max-width: 50vw;
-  margin-bottom: 5vh;
-  padding-left: 5vw;
+  margin-bottom: calc(2vh + 10px);
+  padding-left: 3vw;
 
 
   display: flex;
   align-items: flex-end;
   justify-content: flex-start;
-
-/* 
-      display: grid;
-  grid-auto-flow: column;      
-  grid-auto-columns: max-content; 
-  align-items: end; */
 }
 
 #bar-interaction {
@@ -145,6 +75,8 @@ body {
   align-items: end;
 }
 
+/*old trapez*/
+
 #tree-grid::before {
   /* content: "";
   position: absolute;
@@ -153,7 +85,7 @@ body {
   background: rgb(224, 224, 224);
   clip-path: polygon(20% 0, 80% 0%, 100% 100%, 0% 100%);
   z-index: -1; */
-}
+} 
 
 
 
