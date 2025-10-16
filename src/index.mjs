@@ -56,7 +56,7 @@ const ALL_DATASETS = [
 ];
 const CONFIG = { 
   SORT: false,
-  TREE_SIZING_FACTOR: 130 };
+  TREE_SIZING_FACTOR: 150 };
 const TOTAL_CASES = 5;
 
 let finalizedSelections = [];

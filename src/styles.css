@@ -69,6 +69,7 @@ body {
   display: flex;
   align-items: flex-end;
   justify-content: flex-start;
+
 }
 
 #bar-interaction {
@@ -77,6 +78,8 @@ body {
   width: 50vw;
   display: flex;
   align-items: end;
+
+  margin: 0 2rem;
 }
 
 /*old trapez*/
