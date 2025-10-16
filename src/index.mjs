@@ -119,7 +119,7 @@ export async function initApp() {
   //   drawBarChartWithPreview(ALL_DATASETS[step], step);
   // }
 
-  console.log(typeof finalizedSelections !== 'undefined' && finalizedSelections.length > 0);
+  console.log("selection:" + finalizedSelections);
 
  if (typeof finalizedSelections !== 'undefined' && finalizedSelections.length > 0) {
   // draw old tree
