@@ -146,6 +146,8 @@ function drawBarChartWithPreview(dataIn, step) {
 
   let selectedCase = data.reduce((a, b) => (a.value > b.value ? a : b)).case;
 
+  sendChoiceToParent(selectedCase);
+
   // const svg = container
   //   .append("svg")
   //   .attr("width", width)
