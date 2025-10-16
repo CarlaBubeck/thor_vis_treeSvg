@@ -30,7 +30,7 @@ body {
   flex-direction: row-reverse;
   align-items: end;
   position: fixed;
-  left: 0;
+  left: 50vw;
   width: 50vw;  
   height: 50%;
   margin-left: 2vw;
