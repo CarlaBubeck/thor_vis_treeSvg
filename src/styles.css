@@ -4,7 +4,7 @@ html {
 
 
 body {
-  font-family: sans-serif;
+  font-family: Arial, sans-serif;
   background-image: url('./bg02.png');
   background-size: contain;       /* Make the image cover the entire element */
   background-position: center;  /* Center the image */
@@ -21,6 +21,8 @@ body {
   justify-content: start;
 
 }
+
+
 
 
 #layout {
@@ -60,6 +62,7 @@ body {
   max-width: 50vw;
   margin-bottom: calc(2vh + 10px);
   padding-left: 3vw;
+  padding-bottom: 10px;
 
 
   display: flex;
