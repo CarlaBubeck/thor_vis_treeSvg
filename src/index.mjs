@@ -13,10 +13,10 @@ const caseDataS2 = await response2.json();
 // const caseDataS5 = await response5.json();
 
 const minValue = 0;
-const maxValue = 100;
+const maxValue = 150;
 
 const colorScale = d3.scaleSequential(
-  [minValue, maxValue],
+  [25, maxValue],
   d3.interpolateRdYlGn
 );
 
@@ -30,7 +30,7 @@ const bar_colors = [
 
 const colorScaleTree = d3
   .scaleSequential()
-  .domain([minValue, maxValue])
+  .domain([minValue , maxValue])
   .interpolator(d3.interpolateRgb("#854a03", "#34c408")); // brown to green
 
 
@@ -179,7 +179,7 @@ function drawBarChartWithPreview(dataIn, step) {
 
   const y = d3
     .scaleLinear()
-    .domain([0, 100])
+    .domain([0,160])
     .range([chartHeight / 2 - margin.bottom, -chartHeight / 2 + margin.top]);
 
   chartGroup.append("g").attr("class", "bars");
