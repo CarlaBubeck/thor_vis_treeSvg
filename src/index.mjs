@@ -5,18 +5,18 @@ const response = await fetch("./data/data_scenario_1.json");
 const caseDataS1 = await response.json();
 const response2 = await fetch("./data/data_scenario_2.json");
 const caseDataS2 = await response2.json();
-const response3 = await fetch("./data/data_scenario_3.json");
-const caseDataS3 = await response3.json();
-const response4 = await fetch("./data/data_scenario_4.json");
-const caseDataS4 = await response4.json();
-const response5 = await fetch("./data/data_scenario_5.json");
-const caseDataS5 = await response5.json();
+// const response3 = await fetch("./data/data_scenario_3.json");
+// const caseDataS3 = await response3.json();
+// const response4 = await fetch("./data/data_scenario_4.json");
+// const caseDataS4 = await response4.json();
+// const response5 = await fetch("./data/data_scenario_5.json");
+// const caseDataS5 = await response5.json();
 
 const minValue = 0;
-const maxValue = 100;
+const maxValue = 150;
 
 const colorScale = d3.scaleSequential(
-  [minValue, maxValue],
+  [25, maxValue],
   d3.interpolateRdYlGn
 );
 
@@ -30,7 +30,7 @@ const bar_colors = [
 
 const colorScaleTree = d3
   .scaleSequential()
-  .domain([minValue, maxValue])
+  .domain([minValue , maxValue])
   .interpolator(d3.interpolateRgb("#854a03", "#34c408")); // brown to green
 
 
@@ -50,9 +50,9 @@ const colorScaleTree = d3
 const ALL_DATASETS = [
   caseDataS1,
   caseDataS2,
-  caseDataS3,
-  caseDataS4,
-  caseDataS5,
+  // caseDataS3,
+  // caseDataS4,
+  // caseDataS5,
 ];
 const CONFIG = { 
   SORT: false,
@@ -81,6 +81,14 @@ function getSelectionsFromURL() {
   return raw ? raw.split("-").map(Number) : [];
 }
 
+
+function getDatasetsFromURL() {
+  // in URL: &dataset=1
+  const params = new URLSearchParams(window.location.search);
+  const raw = params.get("dataset");
+  return raw;
+}
+
 export async function initApp() {
   // Layout setup
   const layout = d3.select("body").append("div").attr("id", "layout");
@@ -90,16 +98,41 @@ export async function initApp() {
 
   finalizedSelections = getSelectionsFromURL();
 
-  console.log(finalizedSelections);
+  let selectedDataset = parseInt(getDatasetsFromURL());
 
-  for (let i = 0; i < finalizedSelections.length; i++) {
-    drawFinalTreeOnly(ALL_DATASETS[i], finalizedSelections[i], i);
+
+
+  if(selectedDataset !== 1 && selectedDataset !== 2) {
+    console.log("wrong dataset; dataset: " + selectedDataset);
   }
 
-  if (finalizedSelections.length < TOTAL_CASES) {
-    const step = finalizedSelections.length;
-    drawBarChartWithPreview(ALL_DATASETS[step], step);
-  }
+  console.log("dataset: " + selectedDataset);
+
+
+
+  // for (let i = 0; i < finalizedSelections.length; i++) {
+  //   drawFinalTreeOnly(ALL_DATASETS[i], finalizedSelections[i], i);
+  // }
+
+  // if (finalizedSelections.length < TOTAL_CASES) {
+  //   const step = finalizedSelections.length;
+  //   drawBarChartWithPreview(ALL_DATASETS[step], step);
+  // }
+
+  console.log("selection:" + finalizedSelections);
+
+ if (typeof finalizedSelections !== 'undefined' && finalizedSelections.length > 0) {
+  // draw old tree
+
+  let pastDataset = selectedDataset == 1 ? 2 : 1;
+  drawFinalTreeOnly(ALL_DATASETS[pastDataset - 1], finalizedSelections[0], 0);
+
+ }
+
+
+  drawBarChartWithPreview(ALL_DATASETS[selectedDataset - 1], selectedDataset);
+
+
 }
 
 function drawBarChartWithPreview(dataIn, step) {
@@ -112,6 +145,8 @@ function drawBarChartWithPreview(dataIn, step) {
   const margin = { top: 20, right: 20, bottom: 30, left: 40 };
 
   let selectedCase = data.reduce((a, b) => (a.value > b.value ? a : b)).case;
+
+  sendChoiceToParent(selectedCase);
 
   // const svg = container
   //   .append("svg")
@@ -144,7 +179,7 @@ function drawBarChartWithPreview(dataIn, step) {
 
   const y = d3
     .scaleLinear()
-    .domain([0, 100])
+    .domain([0,160])
     .range([chartHeight / 2 - margin.bottom, -chartHeight / 2 + margin.top]);
 
   chartGroup.append("g").attr("class", "bars");
@@ -332,8 +367,21 @@ function updateSVG(data, selectedCase, step) {
 
   const scaleFactor = svgSize / CONFIG.TREE_SIZING_FACTOR;
 
+
+
+
  d3.select(`#tree_svg_${step}, #final_tree_${step}`)
+    .transition()
+    .duration(100)
+    .ease(d3.easeQuadOut)
  .attr("transform", `scale(${scaleFactor})`);
+
+
+//  d3.select(`#tree_svg_${step}, #final_tree_${step}`)
+//  .attr("viewBox", `0 0 ${scaleFactor} ${scaleFactor}`)
+//    .attr("preserveAspectRatio", "xMidYMid meet")
+//    .style("width", "100%")
+//    .style("height", "auto");
 
 
   // // size
@@ -381,7 +429,7 @@ function updateSVG(data, selectedCase, step) {
 
 function changePathColor(step, pathID, color) {
 
-  console.log(pathID, color)
+  // console.log(pathID, color)
 
   d3.select(`#tree_svg_${step}, #final_tree_${step}`)
   .select(`path:nth-of-type(${pathID})`)  // Select the third path inside the SVG(s)

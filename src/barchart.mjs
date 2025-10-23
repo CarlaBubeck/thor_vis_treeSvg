@@ -23,7 +23,7 @@ export function drawBarChart(dataIn) {
   data = dataIn;
 
   const width = 500;
-  const height = 350;
+  const height = 550;
   const margin = { top: 20, right: 20, bottom: 30, left: 40 };
 
   const svg = container
