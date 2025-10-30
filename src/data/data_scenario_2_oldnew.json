@@ -1,22 +1,22 @@
 [
   {
     "case": 1,
-    "value": 53
+    "value": 123
   },
   {
     "case": 2,
-    "value": 92
+    "value": 37
   },
   {
     "case": 3,
-    "value": 96
+    "value": 67
   },
   {
     "case": 4,
-    "value": 120
+    "value": 83
   },
   {
     "case": 5,
-    "value": 134
+    "value": 108
   }
 ]

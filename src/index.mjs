@@ -141,7 +141,7 @@ function drawBarChartWithPreview(dataIn, step) {
 
   const data = CONFIG.SORT ? d3.sort([...dataIn], (d) => d.value) : [...dataIn];
   const width = 400;
-  const height = 300;
+  const height = 380;
   const margin = { top: 20, right: 20, bottom: 30, left: 40 };
 
   let selectedCase = data.reduce((a, b) => (a.value > b.value ? a : b)).case;
@@ -249,9 +249,13 @@ function drawBarChartWithPreview(dataIn, step) {
         .attr("transform", `rotate(-90)`)  // rotate text to vertical
         .attr("x", 10)          // center along y-axis height
         .attr("y", -170)                    // left of y-axis (adjust as needed)
-        .text("Pax / 100kg CO2")         // replace with your label text
+        // .text("Pax / 1000kg CO2")  
+        .text("Pax / 1000 kg CO₂")
+       // replace with your label text
         .style("font-size", "14px")
         .style("fill", "#000");
+
+
 
 
         };
