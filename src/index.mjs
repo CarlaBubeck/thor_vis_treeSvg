@@ -365,7 +365,7 @@ function updateSVG(data, selectedCase, step) {
   const sizeScale = d3
     .scaleLinear()
     .domain([minValue, maxValue])
-    .range([50, 200]);
+    .range([20, 220]);
 
   const svgSize = sizeScale(selectedData.value);
 
