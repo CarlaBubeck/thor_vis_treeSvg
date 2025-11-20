@@ -140,8 +140,8 @@ function drawBarChartWithPreview(dataIn, step) {
   container.html(""); // Clear any previous step
 
   const data = CONFIG.SORT ? d3.sort([...dataIn], (d) => d.value) : [...dataIn];
-  const width = 400;
-  const height = 380;
+  const width = 380;
+  const height = 360;
   const margin = { top: 20, right: 20, bottom: 30, left: 40 };
 
   let selectedCase = data.reduce((a, b) => (a.value > b.value ? a : b)).case;
