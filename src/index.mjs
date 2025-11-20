@@ -56,7 +56,7 @@ const ALL_DATASETS = [
 ];
 const CONFIG = { 
   SORT: false,
-  TREE_SIZING_FACTOR: 150 };
+  TREE_SIZING_FACTOR: 160 };
 const TOTAL_CASES = 5;
 
 let finalizedSelections = [];
@@ -99,6 +99,12 @@ export async function initApp() {
   finalizedSelections = getSelectionsFromURL();
 
   let selectedDataset = parseInt(getDatasetsFromURL());
+
+  if (selectedDataset == 2) {
+   // change background image (bg image for dataset 1 is default)
+    document.body.style.backgroundImage = "url('bg_s2.png')";
+
+  }
 
 
 
