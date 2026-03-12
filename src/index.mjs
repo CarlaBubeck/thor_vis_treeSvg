@@ -1,6 +1,7 @@
 //import * as d3 from "d3";
 import * as d3 from "https://cdn.jsdelivr.net/npm/d3@7/+esm";
 
+// load data
 const response = await fetch("./data/data_scenario_1.json");
 const caseDataS1 = await response.json();
 const response2 = await fetch("./data/data_scenario_2.json");
@@ -15,10 +16,15 @@ const caseDataS2 = await response2.json();
 const minValue = 0;
 const maxValue = 150;
 
+
+// define colors
+
 const colorScale = d3.scaleSequential(
   [25, maxValue],
   d3.interpolateRdYlGn
 );
+
+
 
 const bar_colors = [
   "#F9B2FF",
@@ -71,11 +77,13 @@ function updateURL(selections) {
 }
 
 function sendChoiceToParent(choice) {
+  // sends choice to parent (pt survey)
   console.log("message sent to parent with value: " + choice);
   window.parent.postMessage({ choiceValue: choice }, "*");
 }
 
 function getSelectionsFromURL() {
+  // reads the URL to see what participant has chosen 
   const params = new URLSearchParams(window.location.search);
   const raw = params.get("selections");
   return raw ? raw.split("-").map(Number) : [];
@@ -106,14 +114,10 @@ export async function initApp() {
 
   }
 
-
-
   if(selectedDataset !== 1 && selectedDataset !== 2) {
     console.log("wrong dataset; dataset: " + selectedDataset);
   }
   console.log("dataset: " + selectedDataset);
-
-
 
   // setup for multiple trees displayed at once
   // for (let i = 0; i < finalizedSelections.length; i++) {
