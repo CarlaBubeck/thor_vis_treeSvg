@@ -69,12 +69,12 @@ let finalizedSelections = [];
 
 initApp();
 
-function updateURL(selections) {
-  const url = new URL(window.location);
-  url.searchParams.set("selections", selections.join("-"));
-  history.replaceState(null, "", url);
-  sendChoiceToParent(selections);
-}
+// function updateURL(selections) {
+//   const url = new URL(window.location);
+//   url.searchParams.set("selections", selections.join("-"));
+//   history.replaceState(null, "", url);
+//   sendChoiceToParent(selections);
+// }
 
 function sendChoiceToParent(choice) {
   // sends choice to parent (pt survey)
@@ -273,7 +273,7 @@ function drawBarChartWithPreview(dataIn, step) {
 
 
 
-  d3.xml("./newtreev2.svg").then((dataXml) => {
+  d3.xml("./tree.svg").then((dataXml) => {
     const importedNode = document.importNode(dataXml.documentElement, true);
     importedNode.removeAttribute("width");
     importedNode.removeAttribute("height");
@@ -295,7 +295,7 @@ function drawFinalTreeOnly(data, selectedCase, step) {
     .attr("id", `final_tree_${step}`)
     .attr("class", "tree_svg");
 
-  d3.xml("./newtreev2.svg").then((dataXml) => {
+  d3.xml("./tree.svg").then((dataXml) => {
     const importedNode = document.importNode(dataXml.documentElement, true);
         importedNode.removeAttribute("width");
     importedNode.removeAttribute("height");
