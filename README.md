@@ -58,7 +58,7 @@ No framework or component library for minimal dependencies and keeping it simple
 
 `initApp()` reads  URL parameters on load:
 - `?dataset=1` or `?dataset=2` — which scenario to display
-- `?selected=N` — for display of a second tree, defines which value to display (= which tree was selected in the previous round)
+- `?selections=N` — for display of a second tree, defines which value to display (= which tree was selected in the previous round)
 
 Both scenario datasets are fetched in parallel; the background image switches to match the active dataset.
 
@@ -89,7 +89,7 @@ The SVG tree (`tree.svg`) is loaded as an inline SVG and manipulated directly:
 1. User clicks a bar
 2. Selected case index updates
 3. Tree re-renders with new size and color (animated)
-4. URL `?selected=N` parameter updates (preserves state on refresh)
+4. URL `?selections=N` parameter updates (preserves state on refresh)
 5. `window.parent.postMessage({ selectedCase: N })` sends selected case to iframe parent
 
 ---
